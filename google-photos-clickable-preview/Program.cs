@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 // which you can use in your Octopress blog.
 //
 // [example]
-// input: href="https://lh3.googleusercontent.com/some-photo=w3360-h1488-no
+// input: dotnet gpcpreview.dll https://lh3.googleusercontent.com/some-photo=w3360-h1488-no
 // output: <a href="https://lh3.googleusercontent.com/some-photo=w3360-h1488-no" target="_blank">{% img center https://lh3.googleusercontent.com/some-photo=w700 Description %}</a>
 //
 // --------------------------------------------------------------------------------------------------
