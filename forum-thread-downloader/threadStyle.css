@@ -1,0 +1,19 @@
+body {
+    width: 70%;
+    margin: auto;
+}
+
+table.tborder {
+    margin-top: 15px;
+    border: 2px solid;
+}
+
+tbody > tr > td {
+    color: darkgreen;
+    font-weight: bold;
+}
+
+h1 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
