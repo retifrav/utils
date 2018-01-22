@@ -29,10 +29,11 @@ namespace forum_thread_downloader
             );
 
             StringBuilder topicPageBuilder = new StringBuilder();
-            td.DownloadTopic(topicPageBuilder);
-
-            // save everything to file
-            File.WriteAllText($"topic.html", topicPageBuilder.ToString());
+            if (td.DownloadTopic(topicPageBuilder))
+            {
+                // save everything to file
+                File.WriteAllText($"topic.html", topicPageBuilder.ToString());
+            }
 
             Console.WriteLine($"- - -\n[{DateTime.Now.ToString()}] Downloading has finished");
         }
@@ -97,7 +98,7 @@ namespace forum_thread_downloader
             /// </summary>
             private int _pageNumber;
 
-            public void DownloadTopic(StringBuilder topicPageBuilder)
+            public bool DownloadTopic(StringBuilder topicPageBuilder)
             {
                 // try to download the page
                 var rez = Task.Run(async () =>
@@ -110,7 +111,7 @@ namespace forum_thread_downloader
                 if (rez.Result.Item1 != 200)
                 {
                     Console.WriteLine($"Some error. Status code: {rez.Result.Item1}");
-                    return;
+                    return false;
                 }
 
                 string webpage = rez.Result.Item2;
@@ -131,6 +132,7 @@ namespace forum_thread_downloader
                             "<link rel=\"stylesheet\" href=\"threadStyle.css\" />"
                             );
 
+                        // delete navigation links and save
                         topicPageBuilder.Append(
                             _rePlaceHeader.Replace(headerWObase, "<div>")
                             );
@@ -138,7 +140,7 @@ namespace forum_thread_downloader
                     else
                     {
                         Console.WriteLine("[error] Couldn't find header");
-                        return;
+                        return false;
                     }
                 }
 
@@ -157,7 +159,7 @@ namespace forum_thread_downloader
                 else
                 {
                     Console.WriteLine("[error] Couldn't find content");
-                    return;
+                    return false;
                 }
                 Console.WriteLine($"Page {_pageNumber + 1} has been processed");
 
@@ -168,7 +170,7 @@ namespace forum_thread_downloader
                 {
                     //Console.WriteLine(_threadLink);
                     _pageNumber++; 
-                    DownloadTopic(topicPageBuilder);
+                    return DownloadTopic(topicPageBuilder);
                 }
                 else
                 {
@@ -180,6 +182,7 @@ namespace forum_thread_downloader
                         );
                     if (matchFooter.Success)
                     {
+                        // delete navigation links and save
                        topicPageBuilder.Append(
                            _rePlaceFooter.Replace(matchFooter.Groups[0].Value, "")
                        );
@@ -187,11 +190,11 @@ namespace forum_thread_downloader
                     else
                     {
                         Console.WriteLine("[error] Couldn't find footer");
-                        return;
+                        return false;
                     }
 
                     Console.WriteLine("End of topic");
-                    return;
+                    return true;
                 }
             }
 

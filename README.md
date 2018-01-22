@@ -20,6 +20,6 @@ dotnet gpcpreview.dll https://lh3.googleusercontent.com/some-photo=w3360-h1488-n
 
 Downloads the whole forum thread. Starts with the first page and recursively goes through thread pages, downloading each one. Merges all the pages into one long-ass page. Injects a `threadStyle.css` style.
 
-No interface provided, you need to change the sources modifying the first link value with regular erxpressions and recompile the program.
+No interface provided, you need to change the sources modifying the first link value with regular expressions and recompile the program.
 
 Was created to download threads from https://www.flyertalk.com/forum/.
