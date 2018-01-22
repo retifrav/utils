@@ -6,8 +6,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-// TODO: Don't grow the whole file in memory, implement some buffer and append file on disk chunk by chunk
+// TODO: Don't accumulate the whole file in memory, implement some buffer and append file on disk chunk by chunk
 // TODO: Remote server can ban your IP for so many requests, implement some IP-address switching mechanism
+// TODO: Looking for footer should be happening right after processing header (store it in some variable and append after getting content is finished)
+// TODO: Find better and more reliable regular expressions
+// TODO: Add exceptions, especially for downloading part
 
 namespace forum_thread_downloader
 {
