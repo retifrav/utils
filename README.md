@@ -16,10 +16,14 @@ dotnet gpcpreview.dll https://lh3.googleusercontent.com/some-photo=w3360-h1488-n
 <a href="https://lh3.googleusercontent.com/some-photo=w3360-h1488-no" target="_blank">{% img center https://lh3.googleusercontent.com/some-photo=w700 Description %}</a>
 ```
 
+Blog post: https://retifrav.github.io/blog/2017/02/01/google-photos-previews/
+
 ### forum-thread-downloader
 
 Downloads the whole forum thread. Starts with the first page and recursively goes through thread pages, downloading each one. Merges all the pages into one long-ass page. Injects a `threadStyle.css` style.
 
 No interface provided, you need to change the sources modifying the first link value with regular expressions and recompile the program.
 
-Was created to download threads from https://www.flyertalk.com/forum/.
+Initialy was created for downloading threads from https://www.flyertalk.com/forum/.
+
+Blog post: https://retifrav.github.io/blog/2018/01/22/csharp-dotnet-core-download-forum-thread/
